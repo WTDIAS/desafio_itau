@@ -17,4 +17,10 @@ public class TransacaoController {
         transacaoService.adicionarTransacao(transacaoDto);
         return ResponseEntity.ok().build();
     }
+
+    @DeleteMapping
+    public ResponseEntity<Void> limparTransacoes(){
+        transacaoService.limparTransacoes();
+        return ResponseEntity.ok().build();
+    }
 }

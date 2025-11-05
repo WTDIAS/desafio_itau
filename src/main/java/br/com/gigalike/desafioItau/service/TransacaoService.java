@@ -20,4 +20,9 @@ public class TransacaoService {
         System.out.println(transacoes);
     }
 
+    public void limparTransacoes(){
+        transacoes.clear();
+        System.out.println(transacoes);
+    }
+
 }
