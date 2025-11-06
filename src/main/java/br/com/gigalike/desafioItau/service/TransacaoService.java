@@ -2,6 +2,7 @@ package br.com.gigalike.desafioItau.service;
 import br.com.gigalike.desafioItau.dto.EstatisticaDto;
 import br.com.gigalike.desafioItau.dto.TransacaoDto;
 import br.com.gigalike.desafioItau.exception.DesafioItauException422;
+import br.com.gigalike.desafioItau.utils.FormatadorNumerico;
 import org.springframework.stereotype.Service;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -33,13 +34,13 @@ public class TransacaoService {
         System.out.println(transacoes);
     }
 
-    public EstatisticaDto calcularEstatistica(){
+    public EstatisticaDto calcularEstatistica(int segundos){
         if (transacoes.isEmpty()){
             return new EstatisticaDto(0,0,0,0,0);
         }
 
         OffsetDateTime agora = OffsetDateTime.now();
-        OffsetDateTime intervaloDeCalculo = agora.minusSeconds(60);
+        OffsetDateTime intervaloDeCalculo = agora.minusSeconds(segundos);
 
         DoubleSummaryStatistics dss = transacoes.stream()
                 .filter(transacao -> !transacao.dataHora().isBefore(intervaloDeCalculo))
@@ -48,6 +49,11 @@ public class TransacaoService {
         System.out.println("AGORA: "+agora);
         System.out.println(dss);
 
-        return new EstatisticaDto(dss.getCount(),dss.getSum(),dss.getAverage(),dss.getMin(),dss.getMax());
+        return new EstatisticaDto(
+                dss.getCount(),
+                FormatadorNumerico.formatarParaDuasCasasDecimais(dss.getSum()),
+                FormatadorNumerico.formatarParaDuasCasasDecimais(dss.getAverage()),
+                dss.getMin(),
+                dss.getMax());
     }
 }

@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.DoubleSummaryStatistics;
 
 @RestController
 public class TransacaoController {
@@ -28,8 +27,8 @@ public class TransacaoController {
     }
 
     @GetMapping("/estatistica")
-    public ResponseEntity<EstatisticaDto> calcularEstatistica(){
-        EstatisticaDto estatisticaDto = transacaoService.calcularEstatistica();
+    public ResponseEntity<EstatisticaDto> calcularEstatistica(@RequestParam(name = "segundos", defaultValue = "60") int segundos){
+        EstatisticaDto estatisticaDto = transacaoService.calcularEstatistica(segundos);
         return ResponseEntity.ok().body(estatisticaDto);
     }
 
