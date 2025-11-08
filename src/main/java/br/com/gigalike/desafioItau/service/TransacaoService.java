@@ -1,7 +1,7 @@
 package br.com.gigalike.desafioItau.service;
 import br.com.gigalike.desafioItau.dto.EstatisticaDto;
 import br.com.gigalike.desafioItau.dto.TransacaoDto;
-import br.com.gigalike.desafioItau.exception.DesafioItauException422;
+import br.com.gigalike.desafioItau.exception.UnprocessableEntityException;
 import br.com.gigalike.desafioItau.utils.FormatadorNumerico;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,11 +26,9 @@ public class TransacaoService {
                 transacaoDto.valor() == null ||
                 transacaoDto.dataHora() == null ||
                 transacaoDto.valor() < 0 ||
-                !transacaoDto.dataHora().isBefore(agora)
-        )
-        {
+                !transacaoDto.dataHora().isBefore(agora)){
             log.warn("Não foi possível salvar a transação: {}",transacaoDto);
-            throw new DesafioItauException422("");
+            throw new UnprocessableEntityException("");
         }
         transacoes.add(transacaoDto);
         log.info("Transação adicionada: {}",transacaoDto);

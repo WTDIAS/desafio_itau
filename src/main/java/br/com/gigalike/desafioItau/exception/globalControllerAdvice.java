@@ -1,19 +1,18 @@
 package br.com.gigalike.desafioItau.exception;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
-public class DesafioItauGlobalControllerAdvice {
-    @ExceptionHandler(DesafioItauException422.class)
-    public ResponseEntity<Void> desafioItauException422(){
+public class globalControllerAdvice {
+    @ExceptionHandler(UnprocessableEntityException.class)
+    public ResponseEntity<Void> unprocessableEntity(){
         return ResponseEntity.unprocessableEntity().build();
     }
 
-    @ExceptionHandler(DesafioItauException400.class)
-    public ResponseEntity<Void> desafioItauException400(){
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<Void> badRequest(){
         return ResponseEntity.badRequest().build();
     }
 

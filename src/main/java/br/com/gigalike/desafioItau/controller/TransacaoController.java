@@ -1,4 +1,4 @@
-package br.com.gigalike.desafioItau.Controller;
+package br.com.gigalike.desafioItau.controller;
 import br.com.gigalike.desafioItau.dto.EstatisticaDto;
 import br.com.gigalike.desafioItau.dto.TransacaoDto;
 import br.com.gigalike.desafioItau.service.TransacaoService;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class TransacaoController {
 
     @Autowired
-    TransacaoService transacaoService;
+    private TransacaoService transacaoService;
 
     @PostMapping("/transacao")
     public ResponseEntity<Void> cadastrarTransacao(@RequestBody TransacaoDto transacaoDto){
