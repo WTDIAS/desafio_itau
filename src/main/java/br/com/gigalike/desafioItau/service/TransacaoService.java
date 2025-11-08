@@ -34,13 +34,16 @@ public class TransacaoService {
         log.info("Transação adicionada: {}",transacaoDto);
     }
 
+
     public void limparTransacoes(){
         transacoes.clear();
         log.info("Transações excluidas: {}",transacoes);
     }
 
+
     public EstatisticaDto calcularEstatistica(int segundos){
         EstatisticaDto estatisticaDtoZerado = new EstatisticaDto(0,0,0,0,0);
+
         if (transacoes.isEmpty()){
             log.info("Calcular estatística foi chamado para lista vazia.");
             return estatisticaDtoZerado;
