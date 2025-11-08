@@ -12,8 +12,6 @@ import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @ExtendWith(MockitoExtension.class)
 class TransacaoServiceTest {
     private TransacaoService transacaoService;
@@ -88,6 +86,7 @@ class TransacaoServiceTest {
     @DisplayName("Deve retornar um objeto EstatisticaDto devidadamente preenchido.")
     void deveRetornarEstatisticaDtoDevidamentePreenchido() {
         //ARRANGE
+        int intervaloDefault = 60;
         EstatisticaDto estatisticaDtoEsperado = new EstatisticaDto(
                 4,
                 179.96,
@@ -105,7 +104,7 @@ class TransacaoServiceTest {
         transacoes.forEach(transacaoService::adicionarTransacao);
 
         //ACT
-        EstatisticaDto estatisticaDtoRetorno = transacaoService.calcularEstatistica(60);
+        EstatisticaDto estatisticaDtoRetorno = transacaoService.calcularEstatistica(intervaloDefault);
 
         //ASSERT
         Assertions.assertEquals(estatisticaDtoRetorno,estatisticaDtoEsperado);
@@ -115,6 +114,7 @@ class TransacaoServiceTest {
     @DisplayName("Deve retornar um objeto EstatisticaDto devidadamente preenchido para apenas 3 das 4 transações pois uma esta fora do intervalo.")
     void deveRetornarEstatisticaDtoDevidamentePreenchidoUmaForaDoIntervalo() {
         //ARRANGE
+        int intervaloDiferente = 70;
         EstatisticaDto estatisticaDtoEsperado = new EstatisticaDto(
                 3,
                 149.97,
@@ -133,7 +133,7 @@ class TransacaoServiceTest {
         transacoes.forEach(transacaoService::adicionarTransacao);
 
         //ACT
-        EstatisticaDto estatisticaDtoRetorno = transacaoService.calcularEstatistica(60);
+        EstatisticaDto estatisticaDtoRetorno = transacaoService.calcularEstatistica(intervaloDiferente);
 
         //ASSERT
         Assertions.assertEquals(estatisticaDtoRetorno,estatisticaDtoEsperado);
@@ -143,6 +143,7 @@ class TransacaoServiceTest {
     @DisplayName("Deve retornar um objeto EstatisticaDto com todos os campos zero para lista de transações vazia.")
     void deveRetornarEstatisticaDtoComCamposZeradosQuandoParaListaVazia() {
         //ARRANGE
+        int intervaloDefault = 60;
         EstatisticaDto estatisticaDtoEsperado = new EstatisticaDto(
                 0,
                 0.00,
@@ -153,7 +154,7 @@ class TransacaoServiceTest {
         OffsetDateTime agora = OffsetDateTime.now(ZoneOffset.of("-03:00"));
 
         //ACT
-        EstatisticaDto estatisticaDtoRetorno = transacaoService.calcularEstatistica(60);
+        EstatisticaDto estatisticaDtoRetorno = transacaoService.calcularEstatistica(intervaloDefault);
 
         //ASSERT
         Assertions.assertEquals(estatisticaDtoRetorno,estatisticaDtoEsperado);
@@ -163,6 +164,7 @@ class TransacaoServiceTest {
     @DisplayName("Deve retornar um objeto EstatisticaDto com todos os campos quando não houver transações no intervalo definido.")
     void deveRetornarEstatisticaDtoComCamposZeradosParaIntervaloSemTransacoes() {
         //ARRANGE
+        int intervaloDefault = 60;
         EstatisticaDto estatisticaDtoEsperado = new EstatisticaDto(
                 0,
                 0.00,
@@ -180,7 +182,7 @@ class TransacaoServiceTest {
         transacoes.forEach(transacaoService::adicionarTransacao);
 
         //ACT
-        EstatisticaDto estatisticaDtoRetorno = transacaoService.calcularEstatistica(60);
+        EstatisticaDto estatisticaDtoRetorno = transacaoService.calcularEstatistica(intervaloDefault);
 
         //ASSERT
         Assertions.assertEquals(estatisticaDtoRetorno,estatisticaDtoEsperado);
