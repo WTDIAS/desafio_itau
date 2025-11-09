@@ -1,19 +1,21 @@
 package br.com.gigalike.desafioItau.utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.util.Locale;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class FormatadorNumerico {
 
     public static final Logger log = LoggerFactory.getLogger(FormatadorNumerico.class);
 
     public static double formatarParaDuasCasasDecimais(Double valor){
-        double retorno = 0.0;
-        try {
-            retorno = Double.parseDouble(String.format(Locale.US, "%.2f", valor));
-        }catch (Exception e){
-            log.error("Erro na formatação de casas decimais para o valor: {}",valor,e);
+        if(valor == null){
+            return 0.00;
         }
-        return retorno;
+
+        BigDecimal bigDecimal = BigDecimal.valueOf(valor);
+        bigDecimal = bigDecimal.setScale(2, RoundingMode.HALF_UP);
+        log.info("Arredondamento de casas decimais de: {} para: {}",valor,bigDecimal);
+        return  bigDecimal.doubleValue();
     }
 }
