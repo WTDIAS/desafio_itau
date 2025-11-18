@@ -9,6 +9,7 @@ O projeto foi desenvolvido com as seguintes tecnologias:
 * **Java 17**
 * **Spring Boot 3.3.4**
 * **Maven**
+* **Spring JWT**: Para garantir a segurança da API. 
 * **Spring Boot Starter Web**: Para construir a API RESTful.
 * **Spring Boot Starter Test**: Para testes unitários e de integração.
 * **Spring Boot Starter Actuator**: Para monitoramento (endpoints `health`, `info`).
@@ -20,7 +21,7 @@ O projeto foi desenvolvido com as seguintes tecnologias:
 
 A organização segue o padrão do Spring Boot e está estruturada por camadas:
 
-![Diretórios](dir3.png)
+![Diretórios](src/main/resources/images/dir3.png)
 
 ## 🛠️ Requisitos de Execução
 
@@ -51,10 +52,11 @@ A aplicação será iniciada na porta padrão do Spring Boot (geralmente 8080).
 ## 🗺️ Endpoints da API
  A documentação completa da API (Swagger UI) estará disponível em http://localhost:8080/swagger-ui.html após a inicialização do servidor.
 
-![Endpoints](endpoints.png)
-![Endpoint - Post](endpointPost.png)
-![Endpoint - Delete](endpointDelete.png)
-![Endpoint - Get](endpointGet.png)
+![Endpoints](src/main/resources/images/login.png)
+![Endpoints](src/main/resources/images/endpoints.png)
+![Endpoint - Post](src/main/resources/images/endpointPost.png)
+![Endpoint - Delete](src/main/resources/images/endpointDelete.png)
+![Endpoint - Get](src/main/resources/images/endpointGet.png)
 ## 📝 Nota  
 A API utiliza a classe FormatadorNumerico para garantir que os valores de soma e media sejam formatados com exatamente duas casas decimais, usando o arredondamento HALF_UP.
 

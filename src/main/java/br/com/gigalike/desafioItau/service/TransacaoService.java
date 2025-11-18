@@ -69,7 +69,7 @@ public class TransacaoService {
                 dss.getCount(),
                 FormatadorNumerico.formatarParaDuasCasasDecimais(dss.getSum()),
                 FormatadorNumerico.formatarParaDuasCasasDecimais(dss.getAverage()),
-                dss.getMin(),
-                dss.getMax());
+                FormatadorNumerico.formatarParaDuasCasasDecimais(dss.getMin()),
+                FormatadorNumerico.formatarParaDuasCasasDecimais(dss.getMax()));
     }
 }
