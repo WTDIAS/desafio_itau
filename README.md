@@ -21,7 +21,7 @@ O projeto foi desenvolvido com as seguintes tecnologias:
 
 A organização segue o padrão do Spring Boot e está estruturada por camadas:
 
-![Diretórios](src/main/resources/images/dir3.png)
+![Diretórios](src/main/resources/images/dir1.png)
 
 ## 🛠️ Requisitos de Execução
 
