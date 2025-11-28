@@ -1,0 +1,30 @@
+name: CI - Builds and tests
+on:
+    push: 
+        branches: [main]
+    pull_request: 
+        branches: [main]
+    
+    jobs:
+        build:
+            runs-on: ubuntu-latest
+    
+        steps:
+            - name: check out code
+              uses: actions/checkout@v4
+
+            # Instalar Java 17
+            - name: set up jdk 17
+              uses: actions/setup-java@v4
+              with: 
+                java-version: "17"
+                distribution: "temurin"
+
+            # Rodar testes
+            - name: run testes
+              run: mvn -B test
+
+            # Build da aplicação
+            - name: Build package
+              run : mvn -B -DskipTests package
+
