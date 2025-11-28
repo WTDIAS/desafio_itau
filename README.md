@@ -1,5 +1,8 @@
 # Desafio Itaú - API de Estatísticas de Transações
 
+![CI](https://github.com/WTDIAS/desafio_itau/actions/workflows/ci.yml/badge.svg)
+
+
 Este projeto implementa uma API RESTful em Java com Spring Boot 3 para gerenciar transações e calcular estatísticas em tempo real, focando em transações que ocorreram nos últimos **60 segundos** (ou um intervalo personalizado).
 
 ## 🚀 Tecnologias e Ferramentas
