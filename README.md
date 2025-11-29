@@ -9,16 +9,23 @@ Este projeto implementa uma API RESTful em Java com Spring Boot 3 para gerenciar
 
 O projeto foi desenvolvido com as seguintes tecnologias:
 
-* **Java 17**
-* **Spring Boot 3.3.4**
-* **Maven**
-* **Spring JWT**: Para garantir a segurança da API. 
-* **Spring Boot Starter Web**: Para construir a API RESTful.
-* **Spring Boot Starter Test**: Para testes unitários e de integração.
-* **Spring Boot Starter Actuator**: Para monitoramento (endpoints `health`, `info`).
-* **Springdoc OpenAPI UI**: Para documentação Swagger/OpenAPI.
-* **Programação Funcional (Streams)**: Utilizada para cálculo eficiente de estatísticas em memória.
-* **Records (Java 17)**: Utilizados para os DTOs (`TransacaoDto`, `EstatisticaDto`).
+- **Java 17** – Records, Text Blocks e programação moderna
+- **Spring Boot 3.3.4** – Base da aplicação com auto-configuração
+- **Spring Web** – API RESTful com endpoints JSON
+- **Spring Security + JWT (JJWT)** – Autenticação stateless e proteção de rotas
+- **Spring Boot Actuator** – Monitoramento via endpoints /health e /info
+- **Springdoc OpenAPI UI** – Documentação interativa com Swagger UI
+- **Spring Boot Test + JUnit 5 + Mockito** – Testes unitários e de controller com alta cobertura
+- **Maven** – Gerenciamento de dependências e build do projeto
+- **Programação em Camadas** – Controller → Service → DTO → Utils (alta coesão e baixo acoplamento)
+- **Princípios SOLID** – Injeção de dependências, responsabilidade única e extensibilidade
+- **Streams API + DoubleSummaryStatistics** – Cálculo eficiente de estatísticas em memória
+- **Records (Java 17)** – DTOs imutáveis e sem boilerplate
+- **Tratamento Global de Exceções** – Respostas padronizadas (400/422) com ControllerAdvice
+- **Validação Robustecida** – Regras de negócio para transações (valor positivo, data/hora válida, janela de 60s)
+- **BigDecimal + HALF_UP** – Precisão monetária com duas casas decimais
+- **OffsetDateTime** – Controle preciso de fuso horário (-03:00) nas transações
+- **Pipeline CI/CD (GitHub Actions)** – Automação de build e testes em pushes para main
 
 ## 📂 Estrutura do Projeto
 
