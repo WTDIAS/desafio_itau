@@ -24,7 +24,7 @@ O projeto foi desenvolvido com as seguintes tecnologias:
 
 A organização segue o padrão do Spring Boot e está estruturada por camadas:
 
-![Diretórios](src/main/resources/images/dir1.png)
+![Diretórios](src/main/resources/images/diretorios.png)
 
 ## 🛠️ Requisitos de Execução
 
@@ -59,7 +59,7 @@ A aplicação será iniciada na porta padrão do Spring Boot (geralmente 8080).
   "username":"admin",<br>
   "password":"1234"<br>
   }
-* ![Login](src/main/resources/images/login-postman1.png)
+![Login](src/main/resources/images/login-postman1.png)
 * **3** - Para inserir uma transação, você deverá inserir o token adquirido durante o login na aba auth conforme a imagem abaixo.
 ![transacao-auth](src/main/resources/images/transacao-auth.png)
 * **4** - Em seguida na aba Body, informe o JSON com valor e datahora conforme a imagem abaixo.<br>
@@ -68,7 +68,7 @@ A aplicação será iniciada na porta padrão do Spring Boot (geralmente 8080).
   "dataHora": "2025-11-29T10:10:29.078Z"<br>
 }
 
-* ![transacao-auth](src/main/resources/images/transacao-body.png)
+![transacao-auth](src/main/resources/images/transacao-body.png)
 * **5** - Para coletar a estatística, também será necessário inserir o token na aba auth. Você pode opcionalmente modificar o intervalo para cálculo da estatística, pois o intervalo default é de 60s.
 ![Estatistica-params](src/main/resources/images/estatistica-params2.png)
 * **6** - Enjoy 😉
@@ -84,22 +84,51 @@ A documentação completa da API (Swagger UI) estará disponível em http://loca
 A API utiliza a classe FormatadorNumerico para garantir que os valores de soma e media sejam formatados com exatamente duas casas decimais, usando o arredondamento HALF_UP.
 
 
-## 💉 Teste de saúde da API
-### Para verificação da saúde da API acesse:  
-http://localhost:8080/actuator/health
+## 💉 Teste de saúde, métricas, e muito mais da API
+### Para verificação dos KPIs acesse o link abaixo pelo Postman
+http://localhost:8080/actuator
 
+![Endpoint - Get](src/main/resources/images/actuator.png)
 ## 🧪 Testes  
 Os testes unitários garantem a cobertura das regras de negócio e o correto funcionamento dos controllers.  
 
-Para executar todos os testes:  
-```bash
-  mvn test
-```
-### Principais Casos de Teste Cobertos:  
+### Testes de Transação
 
-* Adição de transação válida/inválida (nula, negativa, futura).  
-* Cálculo de estatísticas para lista vazia, intervalo sem transações, e intervalo com transações válidas.  
-* TransacaoController,Retorno de status HTTP 201 para sucesso (POST /transacao).  
-* Retorno de status HTTP 422 e 400 para falhas de validação e JSON inválido.  
-* Retorno de status HTTP 200 e corpo EstatisticaDto para requisição GET /estatistica (padrão e personalizado).  
-* FormatadorNumerico,"Arredondamento para cima e para baixo, manutenção de 2 casas decimais, e tratamento de valor null.  
+- Adição de transação válida, valor zero, nula, negativa, e data nula.
+- Lançamento de exceções para valores nulos, negativos, ou data nula (UnprocessableEntityException).
+- Cálculo de estatísticas para lista vazia, intervalo sem transações, intervalo com transações válidas.
+- Teste do controller: Retorno de status HTTP 201 (POST /transacao) com dados válidos.
+- Retorno de status HTTP 422 para falhas de validação.
+- Retorno de status HTTP 400 para JSON inválido.
+- Retorno de status HTTP 200 e corpo EstatisticaDto para requisição GET /estatistica (padrão e personalizada).
+
+### Testes de Autenticação
+
+- Retorno de código HTTP 200 e token ao autenticar com sucesso.
+- Retorno de código HTTP 403 e token nulo ao tentar autenticar com username ou senha inválidos.
+- Testes de controller: retorno de status HTTP apropriado e corpo da resposta para login inválido ou válido.
+- Teste de filtro JWT: processa requisições com token válido e autentica usuário.
+- Retorno de status 401 para token inválido ou expirado.
+- Validação de ausência do header Authorization.
+- Continuação da cadeia de filtros para header inválido.
+
+### Testes de Utilidade
+
+- Formatação de número: arredondamento para cima e para baixo para duas casas decimais.
+- Manutenção do valor original se já possuir duas casas decimais ou sem casas decimais.
+- Retorno zero para valores nulos.
+
+### Testes de JWT
+
+- Geração de token JWT válido e com username.
+- Extração do username corretamente do token.
+- Geração de tokens diferentes para usernames diferentes.
+- Lançamento de exceção ao tentar extrair username de token inválido.
+- Lançamento de exceção para assinatura inválida.
+
+## 🔄 Para executar todos os testes:
+```bash 
+
+  mvn test
+  
+```
