@@ -8,6 +8,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+/**
+ * Este metodo é responsável por verificar se usuário está logado,
+ * e solicitar a geraração um token.
+ *
+ * @author Waldir Tiago Dias
+ * @version 1.0, 11/2025
+ */
 
 @Service
 public class AuthService {

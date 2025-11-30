@@ -8,6 +8,13 @@ import org.springframework.stereotype.Component;
 import javax.crypto.SecretKey;
 import java.util.Date;
 
+/**
+ * Esta classe possui metodos para auxiliar nas funções da JWT
+ *
+ * @author Waldir Tiago Dias
+ * @version 1.0, 11/2025
+ */
+
 @Component
 public class JwtUtil {
 
@@ -23,6 +30,13 @@ public class JwtUtil {
 
     private static final long EXPERATION_TIME = 3600000;
 
+    /**
+     * Este metodo gera um novo token com base no username fornecido
+     * e utilizando uma chave secreta para isso.
+     *
+     * @author Waldir Tiago Dias
+     * @version 1.0, 11/2025
+     */
     public String gerarToken(String username){
         return Jwts.builder()
                 .setSubject(username)
@@ -32,6 +46,13 @@ public class JwtUtil {
                 .compact();
     }
 
+
+    /**
+     * Este metodo faz a validação e extração do username de um token.
+     *
+     * @author Waldir Tiago Dias
+     * @version 1.0, 11/2025
+     */
     public String extrairUserName(String token){
         Claims claims = Jwts.parserBuilder()
                 .setSigningKey(SECRET_KEY)

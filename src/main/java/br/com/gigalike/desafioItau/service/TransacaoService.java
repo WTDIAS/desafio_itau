@@ -13,6 +13,14 @@ import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Esta classe é responsável por toda regra de negócio de uma transação
+ *
+ *
+ * @author Waldir Tiago Dias
+ * @version 1.0, 11/2025
+ */
+
 @Service
 public class TransacaoService {
 
@@ -20,6 +28,12 @@ public class TransacaoService {
     private static final Logger log = LoggerFactory.getLogger(TransacaoService.class);
     private OffsetDateTime agora;
 
+    /**
+     * Este metodo adiciona uma transação na lista de transaçãoes
+     *
+     * @author Waldir Tiago Dias
+     * @version 1.0, 11/2025
+     */
     public void adicionarTransacao(TransacaoDto transacaoDto) {
         agora = OffsetDateTime.now(ZoneOffset.of("-03:00"));
         if (
@@ -35,12 +49,25 @@ public class TransacaoService {
     }
 
 
+    /**
+     * Este metodo limpa todas as transações da lista.
+     *
+     * @author Waldir Tiago Dias
+     * @version 1.0, 11/2025
+     */
     public void limparTransacoes(){
         transacoes.clear();
         log.info("Transações excluidas: {}",transacoes);
     }
 
 
+    /**
+     * Este metodo faz o calculo das estatísticas conforme o intervalo de tempo,
+     * e devolve um DTO com os dados.
+     *
+     * @author Waldir Tiago Dias
+     * @version 1.0, 11/2025
+     */
     public EstatisticaDto calcularEstatistica(int segundos){
         EstatisticaDto estatisticaDtoZerado = new EstatisticaDto(0,0,0,0,0);
 

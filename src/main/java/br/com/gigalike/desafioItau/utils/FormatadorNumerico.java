@@ -4,6 +4,14 @@ import org.slf4j.LoggerFactory;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+/**
+ * Esta classe é responsável por formatar as casas decimais mantendo sempre
+ * e apenas duas.
+ *
+ * @author Waldir Tiago Dias
+ * @version 1.0, 11/2025
+ */
+
 public class FormatadorNumerico {
 
     public static final Logger log = LoggerFactory.getLogger(FormatadorNumerico.class);

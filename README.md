@@ -25,7 +25,8 @@ O projeto foi desenvolvido com as seguintes tecnologias:
 - **Validação Robustecida** – Regras de negócio para transações (valor positivo, data/hora válida, janela de 60s)
 - **BigDecimal + HALF_UP** – Precisão monetária com duas casas decimais
 - **OffsetDateTime** – Controle preciso de fuso horário (-03:00) nas transações
-- **Pipeline CI/CD (GitHub Actions)** – Automação de build e testes em pushes para main
+- **Pipeline CI (GitHub Actions)** – Automação de build e testes em pushes para main
+- **Javadoc** – Comentários Javadoc nos códigos
 
 ## 📂 Estrutura do Projeto
 

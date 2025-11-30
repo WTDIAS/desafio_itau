@@ -12,6 +12,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
+/**
+ * Esta classe é um filtro que intercepta todas requisições HTTP
+ * e faz a validação do token recebido caso ele exista.
+ *
+ * @author Waldir Tiago Dias
+ * @version 1.0, 11/2025
+ */
+
 @Component
 public class JwtAuthFilter extends OncePerRequestFilter {
 
