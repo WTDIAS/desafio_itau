@@ -27,6 +27,7 @@ O projeto foi desenvolvido com as seguintes tecnologias:
 - **OffsetDateTime** – Controle preciso de fuso horário (-03:00) nas transações
 - **Pipeline CI (GitHub Actions)** – Automação de build e testes em pushes para main
 - **Javadoc** – Comentários Javadoc nos códigos
+- **Git/GitHub** – Controle de versão com Git e GitHub.
 
 ## 📂 Estrutura do Projeto
 
@@ -63,17 +64,17 @@ A aplicação será iniciada na porta padrão do Spring Boot (geralmente 8080).
 ## 🧪 Como utilizar
 ### `1.` Com o Postman instalado.<br>
 ### `2.` Para fazer as requisições é necessário fazer login através de uma requisição POST contendo o JSON. Será retornado um JSON contendo o token que será necessário para demais requisições.<br>
-  {<br>
-  "username":"admin",<br>
-  "password":"1234"<br>
-  }
+{<br>
+"username":"admin",<br>
+"password":"1234"<br>
+}
 ![Login](src/main/resources/images/login-postman1.png)
 ### `3.`  Para inserir uma transação, você deverá inserir o token adquirido durante o login na aba auth conforme a imagem abaixo.
 ![transacao-auth](src/main/resources/images/transacao-auth.png)
 ### `4.`  Em seguida na aba Body, informe o JSON com valor e datahora conforme a imagem abaixo.<br>
 {<br>
-  "valor": 9.77,<br>
-  "dataHora": "2025-11-29T10:10:29.078Z"<br>
+"valor": 9.77,<br>
+"dataHora": "2025-11-29T10:10:29.078Z"<br>
 }
 
 ![transacao-auth](src/main/resources/images/transacao-body.png)
@@ -88,17 +89,41 @@ A documentação completa da API (Swagger UI) estará disponível em http://loca
 ![Endpoint - Post](src/main/resources/images/endpointPost.png)
 ![Endpoint - Delete](src/main/resources/images/endpointDelete.png)
 ![Endpoint - Get](src/main/resources/images/endpointGet.png)
-## 📝 Nota  
+## 📝 Nota
 A API utiliza a classe FormatadorNumerico para garantir que os valores de soma e media sejam formatados com exatamente duas casas decimais, usando o arredondamento HALF_UP.
 
+## 🫙 Como executar via container
+### Com o Docker instalado, após clonar o repositório e descompactar:
+### `1.` Abra o CMD ou PowerShell no Windows.
+### `2.` Navegue até a pasta do projeto onde está o Dockerfile:
+(ajuste para o caminho real do seu projeto)
+```bash 
 
-## 💉 Teste de saúde, métricas, e muito mais da API
+  cd C:\Users\usuario\meu-projeto
+  
+```
+### `3.` Execute o comando de build:
+Neste comando o Docker irá gerar uma imagem com nome desafio-itau
+```bash 
+
+  docker build -t desafio-itau .
+  
+```
+### `4.` Agora é só rodar a imagem para gerar o container
+```bash 
+
+  docker run -d -p 8080:8080 --name api-itau desafio-itau
+  
+```
+
+## 💉 Saúde, métricas, e muito mais da API
+
 ### Para verificação dos KPIs acesse o link abaixo pelo Postman
 http://localhost:8080/actuator
 
 ![Endpoint - Get](src/main/resources/images/actuator.png)
-## 🧪 Testes  
-Os testes unitários garantem a cobertura das regras de negócio e o correto funcionamento dos controllers.  
+## 🧪 Testes Unitários
+Os testes unitários garantem a cobertura das regras de negócio e o correto funcionamento dos controllers.
 
 ### Testes de Transação
 
@@ -140,3 +165,4 @@ Os testes unitários garantem a cobertura das regras de negócio e o correto fun
   mvn test
   
 ```
+

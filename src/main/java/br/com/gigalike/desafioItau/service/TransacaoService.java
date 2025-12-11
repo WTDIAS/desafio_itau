@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 /**
  * Esta classe é responsável por toda regra de negócio de uma transação
  *
- *
  * @author Waldir Tiago Dias
  * @version 1.0, 11/2025
  */
